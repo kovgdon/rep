@@ -1,5 +1,5 @@
 def dfs(edges, a, b):
-    # Проверка корректности a и b
+    # Проверка корректности
     all_nodes = set()
     for u, v in edges:
         all_nodes.add(u)
@@ -14,7 +14,7 @@ def dfs(edges, a, b):
         graph.setdefault(v, []).append(u)
     
     visited = set()
-    # Обход в глубину для поиска пути от a до b
+    # Обход в глубину
     stack = [(a, 0)]  # (вершина, расстояние)
     
     while stack:
