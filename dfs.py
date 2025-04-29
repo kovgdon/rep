@@ -5,19 +5,18 @@ def dfs(edges, start):
         graph.setdefault(v, []).append(u)
     
     visited = set()
-    stack = [start]
-    path = []
+    stack = [(a, 0)]
     
     while stack:
-        vertex = stack.pop()
+        vertex, distance = stack.pop()
+        if vertex == b:
+            return distance
         if vertex not in visited:
             visited.add(vertex)
-            path.append(vertex)
-            for neighbor in reversed(graph.get(vertex, [])):
-                if neighbor not in visited:
-                    stack.append(neighbor)
-    return path
+            for neighbor in graph.get(vertex, []):
+                stack.append((neighbor, distance + 1))
+    return -1  # Путь не найден
 
 # Пример использования:
 edges = [(4, 2), (1, 3), (2, 4)]
-print(dfs(edges, 1))  # Вывод: [1, 3]
+print(dfs(edges, 2, 4))  # Вывод: 1
